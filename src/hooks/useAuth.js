@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import toast from 'react-hot-toast';
 const useAuth = (initialState) => {
     const [values, setValues] = useState(initialState);
 
@@ -11,7 +11,12 @@ const useAuth = (initialState) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(values)
+        const { name, email, password, isMember } = values;
+        if (!email || !password || (!isMember && !name)) {
+            toast.error('This is an error!');
+            return;
+        }
+
     }
 
     const toggleMember = () => {
