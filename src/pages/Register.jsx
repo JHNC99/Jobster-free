@@ -14,10 +14,7 @@ const Register = () => {
         <Wrapper className='full-page'>
             <form className='form' onSubmit={onSubmit}>
                 <Logo />
-                {/* control h3 */}
                 <h3>{values.isMember ? "Login" : "Register"}</h3>
-                {/* Name fields */}
-
                 {
                     !values.isMember &&
                     <FormRow

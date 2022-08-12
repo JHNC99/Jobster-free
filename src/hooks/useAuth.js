@@ -13,7 +13,7 @@ const useAuth = (initialState) => {
         e.preventDefault();
         const { name, email, password, isMember } = values;
         if (!email || !password || (!isMember && !name)) {
-            toast.error('This is an error!');
+            toast.error('Please Fill Out All Fields!');
             return;
         }
 
