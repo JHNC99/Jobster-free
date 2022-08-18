@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { loginUser, registerUser } from "../store/slices/user";
 import toast from 'react-hot-toast';
 const useAuth = (initialState) => {
     const [values, setValues] = useState(initialState);
-
+    const dispatch = useDispatch();
+    const { isLoading, user } = useSelector((store) => store.user)
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value
@@ -16,6 +19,12 @@ const useAuth = (initialState) => {
             toast.error('Please Fill Out All Fields!');
             return;
         }
+        if (isMember) {
+            dispatch(loginUser({ email: values.email, password: values.password }))
+        }
+        else {
+            dispatch(registerUser({ name: values.name, email: values.email, password: values.password }))
+        }
 
     }
 
@@ -28,7 +37,8 @@ const useAuth = (initialState) => {
         values,
         handleChange,
         onSubmit,
-        toggleMember
+        toggleMember,
+        isLoading
     }
 }
 export default useAuth;
