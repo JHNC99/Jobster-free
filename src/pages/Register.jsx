@@ -10,7 +10,6 @@ const initialState = {
 }
 const Register = () => {
     const { values, handleChange, onSubmit, toggleMember, isLoading } = useAuth(initialState);
-    console.log(isLoading)
     return (
         <Wrapper className='full-page'>
             <form className='form' onSubmit={onSubmit}>
@@ -38,7 +37,11 @@ const Register = () => {
                     value={values.password}
                     handleChange={handleChange}
                 />
-                <button type='submit' className='btn btn-block' disabled={isLoading}>Submit</button>
+                <button type='submit' className='btn btn-block' disabled={isLoading}>
+                    {
+                        isLoading ? "loading.." : "submit"
+                    }
+                </button>
                 <p>
                     {values.isMember ? "Not member yet?" : "Already a member?"}
                     <button type='button' className='member-btn' onClick={toggleMember}>
